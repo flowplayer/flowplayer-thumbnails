@@ -17,7 +17,7 @@ ffmpeg -i bauhaus.mp4 -vf scale=400:-1 -vf fps=1 bauhaus%d.jpg
 
 ```html
 <script src="//releases.flowplayer.org/6.0.3/flowplayer.min.js"></script>
-<script src="../flowplayer-thumbnails.js"></script>
+<script src="flowplayer-thumbnails.js"></script>
 ```
 
 #### initialize player
