@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Flowplayer thumbnails</title>
+    <link rel="stylesheet" href="//releases.flowplayer.org/6.0.3/skin/minimalist.css">
+    <link rel="stylesheet" href="//demos.flowplayer.org/media/css/demo.css">
+  </head>
+  <body>
+    <div id="content">
+      <h1>Flowplayer thumbnails</h1>
+      <div id="player"></div>
+    </div>
+    <script src="//releases.flowplayer.org/6.0.3/flowplayer.min.js"></script>
+    <script src="../flowplayer-thumbnails.js"></script>
+    <script>
+    flowplayer('#player', {
+      ratio: 0.4167,
+      clip: {
+        title: 'Bauhaus',
+        thumbnails: {
+          template: 'thumbnails/bauhaus{time}.png'
+        },
+        sources: [{
+          type: 'video/webm',
+          src: '//stream.flowplayer.org/bauhaus.webm'
+        }, {
+          type: 'video/mp4',
+          src: '//stream.flowplayer.org/bauhaus.mp4'
+        }]
+      }
+    });
+    </script>
+  </body>
+</html>
