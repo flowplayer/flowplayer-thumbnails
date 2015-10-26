@@ -48,10 +48,15 @@
 
   function preloadImages(tmpl, max, start) {
     if (typeof start === 'undefined') start = 1;
-    while (start <= max) {
+    function load() {
+      if (start > max) return;
       var img = new Image();
       img.src = tmpl.replace('{time}', start);
-      start++;
+      img.onload = function() {
+        start++;
+        load();
+      };
     }
+    load();
   }
 }(typeof module === "object" && module.exports ? require('flowplayer') : window.flowplayer));
