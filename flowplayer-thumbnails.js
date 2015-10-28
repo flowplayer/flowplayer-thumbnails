@@ -21,10 +21,10 @@
             percentage = delta / common.width(timeline),
             seconds = Math.round(percentage * api.video.duration);
         if (seconds < 1) return;
-        var width = c.width || 200;
+        var height = c.height || 80;
         common.css(timelineTooltip, {
-          width: width + 'px',
-          'padding-bottom': (api.conf.ratio * width) + 'px',
+          width: (height / api.conf.ratio) + 'px',
+          height: height + 'px',
           'background-image': "url('" + c.template.replace('{time}', seconds) + "')",
           'background-repeat': 'no-repeat',
           'background-size': 'cover',

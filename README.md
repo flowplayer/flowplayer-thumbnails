@@ -8,7 +8,7 @@ Live demo at http://cdn.rawgit.com/nnarhinen/flowplayer-thumbnails/master/exampl
 ### Create thumbnails from video
 
 ```
-ffmpeg -i bauhaus.mp4 -vf scale=400:-1 -vf fps=1 bauhaus%d.jpg
+ffmpeg -i bauhaus.mp4 -filter:v scale=-1:160,fps=1 bauhaus%d.jpg
 ```
 
 ### Configuration
@@ -51,4 +51,4 @@ option     | required | default value | description
 :----------| ---------| :------------ | :----------
 `template` | yes      |               | The path from where to load the thumbnail images. Either a relative or absolute path. Use `{time}` as a placeholder for seconds.
 `preload`  | no       |`true`         | If `true`, then all images will be cached at player initialization to make them appear quicker.
-`width`    | no       | 200           | The thumbnail width
+`height`   | no       | 80            | The thumbnail height
