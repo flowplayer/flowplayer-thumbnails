@@ -52,3 +52,8 @@ option     | required | default value | description
 `template` | yes      |               | The path from where to load the thumbnail images. Either a relative or absolute path. Use `{time}` as a placeholder for seconds.
 `preload`  | no       |`true`         | If `true`, then all images will be cached at player initialization to make them appear quicker.
 `height`   | no       | 80            | The thumbnail height
+
+
+## CORS
+
+If the player is offered for [embedding](https://flowplayer.org/docs/embedding.html) or if the images are not served from the same domain, they must be loaded from a server with a [cross domain policy](https://flowplayer.org/docs/setup.html#cross-domain) permitting `GET` requests.
