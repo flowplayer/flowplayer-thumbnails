@@ -5,8 +5,13 @@
   flowplayer(function(api, root) {
     var common = flowplayer.common,
         bean = flowplayer.bean,
+        support = flowplayer.support,
         timeline = common.find('.fp-timeline', root)[0],
         timelineTooltip = common.find('.fp-timeline-tooltip', root)[0];
+
+    if (support.touch || !support.inlineVideo) {
+      return;
+    }
 
     api.on('ready', function(ev, a, video) {
       cleanup();
