@@ -41,7 +41,7 @@
       bean.off(root, '.thumbnails');
       common.css(timelineTooltip, {
         width: '',
-        'padding-bottom': '',
+        height: '',
         'background-image': '',
         'background-repeat': '',
         'background-size': '',
