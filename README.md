@@ -4,7 +4,7 @@ Flowplayer thumbnail image plugin
 
 ## Usage
 
-Live demo at http://cdn.rawgit.com/nnarhinen/flowplayer-thumbnails/master/example/index.html
+Live demo at http://demos.flowplayer.org/api/thumbnails.html
 
 ### Create thumbnails from video
 
@@ -23,7 +23,7 @@ To cater for devices with retina display scale height should be 2 times the valu
 
 ```html
 <script src="//releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
-<script src="flowplayer-thumbnails.js"></script>
+<script src="//releases.flowplayer.org/thumbnails/flowplayer-thumbnails.min.js"></script>
 ```
 
 #### initialize player
