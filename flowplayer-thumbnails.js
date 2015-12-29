@@ -1,5 +1,20 @@
 /* jshint undef:true, browser:true, node:true */
 
+/*!
+
+   Thumbnail image plugin for Flowplayer HTML5
+
+   Copyright (c) 2015, Flowplayer Oy
+
+   Released under the MIT License:
+   http://www.opensource.org/licenses/mit-license.php
+
+   requires:
+   - Flowplayer HTML5 version 6.x or greater
+   revision: $GIT_ID$
+
+*/
+
 (function(flowplayer) {
   "use strict";
   flowplayer(function(api, root) {
