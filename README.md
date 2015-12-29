@@ -1,6 +1,6 @@
-# flowplayer-thumbnails
+# Flowplayer thumbnails plugin
 
-Flowplayer thumbnail image plugin
+This plugin displays preview thumbnail images on the timeline.
 
 ## Usage
 
@@ -23,7 +23,7 @@ To cater for devices with retina display scale height should be 2 times the valu
 
 ```html
 <script src="//releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
-<script src="//releases.flowplayer.org/thumbnails/flowplayer-thumbnails.min.js"></script>
+<script src="//releases.flowplayer.org/thumbnails/flowplayer.thumbnails.min.js"></script>
 ```
 
 #### initialize player
