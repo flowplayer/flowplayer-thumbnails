@@ -58,3 +58,26 @@ option     | required | default value | description
 `template` | yes      |               | The path from where to load the thumbnail images. Either a relative or absolute path. Use `{time}` as a placeholder for seconds.
 `preload`  | no       |`true`         | If `true`, then all images will be cached at player initialization to make them appear quicker.
 `height`   | no       | 80            | The thumbnail height.
+
+## CommonJS
+
+The plugin can be used in a [browserify](http://browserify.org) and/or
+[webpack](https://webpack.github.io/) environment with a
+[commonjs](http://requirejs.org/docs/commonjs.html) loader:
+
+```js
+var flowplayer = require('flowplayer');
+require('flowplayer-thumbnails'); // Plugin injects itself into flowplayer
+```
+
+## Building the plugin
+
+Build requirement:
+
+- [nodejs](https://nodejs.org) with [npm](https://www.npmjs.com)
+
+```sh
+cd flowplayer-thumbnails
+make deps
+make
+```

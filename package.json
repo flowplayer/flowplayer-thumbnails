@@ -1,0 +1,31 @@
+{
+  "name": "flowplayer-thumbnails",
+  "version": "0.1.0",
+  "description": "Flowplayer thumbnails plugin",
+  "main": "flowplayer.thumbnails.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jslint --edition=latest --devel flowplayer.thumbnails.js",
+    "minify": "uglifyjs --mangle -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flowplayer/flowplayer-thumbnails"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowplayer/flowplayer-thumbnails/issues"
+  },
+  "homepage": "https://github.com/flowplayer/flowplayer-thumbnails",
+  "peerDependencies": {
+    "flowplayer": "^6.0.3"
+  },
+  "devDependencies": {
+    "jslint": "^0.9.5",
+    "uglifyjs": "^2.4.10"
+  },
+  "jshintConfig": {
+    "undef": true
+  }
+}
