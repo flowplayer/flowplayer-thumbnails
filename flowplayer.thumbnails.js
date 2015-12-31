@@ -38,7 +38,9 @@
                 'background-image': '',
                 'background-repeat': '',
                 'background-size': '',
-                'background-position': ''
+                'background-position': '',
+                'border': '',
+                'text-shadow': ''
             });
 
             var c = video.thumbnails || api.conf.thumbnails,
@@ -82,7 +84,9 @@
                     'background-image': "url('" + c.template.replace('{time}', seconds) + "')",
                     'background-repeat': 'no-repeat',
                     'background-size': 'cover',
-                    'background-position': 'center'
+                    'background-position': 'center',
+                    'border': '1px solid #333',
+                    'text-shadow': '1px 1px #000'
                 });
             });
         });
