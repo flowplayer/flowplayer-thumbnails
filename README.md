@@ -11,11 +11,22 @@ Live demo at http://demos.flowplayer.org/api/thumbnails.html
 Simple [ffmpeg](http://www.ffmpeg.org/) command example:
 
 ```
-ffmpeg -i bauhaus.mp4 -r 1 -filter:v scale=-1:160 bauhaus%d.jpg
+$ ffmpeg -i bauhaus.mp4 -r 1 -filter:v scale=-1:160 bauhaus%d.jpg
 ```
 
 To cater for devices with retina display scale height should be 2 times the value of the desired
 `height` [option](#options).
+
+Especially for longer videos it is recommended to save as much on image file size as possible to
+save on loading time.
+
+Example command to batch create and optimize thumbnail images:
+
+```
+$ ffmpeg -i bauhaus.mp4 -r 1 -filter:v scale=-1:160 -q:v 5 %d-X.jpg
+$ for j in *-X.jpg; do jpegtran -copy none -optimize -outfile ${j%-X.jpg}.jpg; done
+$ rm *-X.jpg
+```
 
 ### Configuration
 
