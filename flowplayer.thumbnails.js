@@ -74,7 +74,8 @@
                     percentage = delta / common.width(timeline),
                     seconds = Math.round(percentage * api.video.duration);
 
-                if (seconds < 1) {
+                // 2nd condition safeguards at out of range retrieval attempts
+                if (seconds < 0 || seconds > Math.round(api.video.duration)) {
                     return;
                 }
                 var height = c.height || 80;
