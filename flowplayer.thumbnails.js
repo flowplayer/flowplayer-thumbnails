@@ -82,7 +82,8 @@
                 common.css(timelineTooltip, {
                     width: (height / api.conf.ratio) + 'px',
                     height: height + 'px',
-                    'background-image': "url('" + c.template.replace('{time}', seconds) + "')",
+                    // {time} template expected to start at 1, video time/first frame starts at 0
+                    'background-image': "url('" + c.template.replace('{time}', seconds + 1) + "')",
                     'background-repeat': 'no-repeat',
                     'background-size': 'cover',
                     'background-position': 'center',
