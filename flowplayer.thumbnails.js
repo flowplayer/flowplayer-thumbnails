@@ -45,9 +45,15 @@
 
             var c = video.thumbnails || api.conf.thumbnails,
                 preloadImages = function (tmpl, max, start) {
+                    var add = 1;
                     if (start === undefined) {
                         start = 1;
                     }
+                    /* round up by interval ex: 4,8,12,16 */
+                    if(c.interval !== undefined && c.interval > 1) {
+                        start = start + (c.interval - (start % c.interval));
+                        add = c.interval; 
+                    }   
                     function load() {
                         if (start > max) {
                             return;
@@ -55,7 +61,7 @@
                         var img = new Image();
                         img.src = tmpl.replace('{time}', start);
                         img.onload = function () {
-                            start += 1;
+                            start += add;
                             load();
                         };
                     }
@@ -74,6 +80,10 @@
                     percentage = delta / common.width(timeline),
                     seconds = Math.round(percentage * api.video.duration);
 
+                /* round up by interval ex: 4,8,12,16, -1 for compatibility */
+                if(c.interval !== undefined && c.interval > 1) {
+                  seconds = seconds + (c.interval - (seconds % c.interval)) - 1;
+                }
                 // 2nd condition safeguards at out of range retrieval attempts
                 if (seconds < 0 || seconds > Math.round(api.video.duration)) {
                     return;
