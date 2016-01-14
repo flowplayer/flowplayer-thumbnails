@@ -69,6 +69,7 @@ option     | required | default value | description
 `template` | yes      |               | The path from where to load the thumbnail images. Either a relative or absolute path. Use `{time}` as a placeholder for seconds.
 `preload`  | no       |`true`         | If `true`, then all images will be cached at player initialization to make them appear quicker.
 `height`   | no       | 80            | The thumbnail height.
+`interval` | no       | 1             | Seconds between thumbnails, set this if you want to have more than one second between images.
 
 ## CommonJS
 
