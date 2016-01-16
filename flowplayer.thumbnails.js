@@ -79,8 +79,8 @@
                     return;
                 }
                 /* enables greater interval than one second between thumbnails */
-                if(c.interval !== undefined && c.interval > 1 && seconds > 0) {
-                  seconds = Math.ceil(seconds / c.interval) -1;
+                if (c.interval !== undefined && c.interval > 1 && seconds > 0) {
+                    seconds = Math.ceil(seconds / c.interval) - 1;
                 }
                 var height = c.height || 80;
                 common.css(timelineTooltip, {
