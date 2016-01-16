@@ -14,6 +14,8 @@ Simple [ffmpeg](http://www.ffmpeg.org/) command example:
 $ ffmpeg -i bauhaus.mp4 -r 1 -filter:v scale=-1:160 bauhaus%d.jpg
 ```
 
+The value for `-r` should be the one which is used for the `interval` [option](#options).
+
 To cater for devices with retina display scale height should be 2 times the value of the desired
 `height` [option](#options).
 
