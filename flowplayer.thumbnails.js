@@ -78,6 +78,10 @@
                 if (seconds < 0 || seconds > Math.round(api.video.duration)) {
                     return;
                 }
+                /* enables greater interval than one second between thumbnails */
+                if(c.interval !== undefined && c.interval > 1 && seconds > 0) {
+                  seconds = Math.ceil(seconds / c.interval) -1;
+                }
                 var height = c.height || 80;
                 common.css(timelineTooltip, {
                     width: (height / api.conf.ratio) + 'px',
