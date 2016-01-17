@@ -65,9 +65,12 @@
             if (!c) {
                 return;
             }
+
+            var ratio = video.height / video.width;
             if (c.preload !== false) {
                 preloadImages(c.template, video.duration);
             }
+
             bean.on(root, 'mousemove.thumbnails', '.fp-timeline', function (ev) {
                 var x = ev.pageX || ev.clientX,
                     delta = x - common.offset(timeline).left,
@@ -82,9 +85,11 @@
                 if (c.interval !== undefined && c.interval > 1 && seconds > 0) {
                     seconds = Math.ceil(seconds / c.interval) - 1;
                 }
+
                 var height = c.height || 80;
+
                 common.css(timelineTooltip, {
-                    width: (height / api.conf.ratio) + 'px',
+                    width: (height / ratio) + 'px',
                     height: height + 'px',
                     // {time} template expected to start at 1, video time/first frame starts at 0
                     'background-image': "url('" + c.template.replace('{time}', seconds + 1) + "')",
