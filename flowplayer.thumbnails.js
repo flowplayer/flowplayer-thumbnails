@@ -53,6 +53,7 @@
                 interval = c.interval || 1,
                 ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
+                    max = Math.floor(max / interval);
                     if (start === undefined) {
                         start = 1;
                     }
