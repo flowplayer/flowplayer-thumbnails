@@ -43,7 +43,14 @@
                 'text-shadow': ''
             });
 
-            var c = video.thumbnails || api.conf.thumbnails,
+            var c = video.thumbnails || api.conf.thumbnails;
+
+            if (!c) {
+                return;
+            }
+
+            var height = c.height || 80,
+                ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
                     if (start === undefined) {
                         start = 1;
@@ -62,11 +69,6 @@
                     load();
                 };
 
-            if (!c) {
-                return;
-            }
-
-            var ratio = video.height / video.width;
             if (c.preload !== false) {
                 preloadImages(c.template, video.duration);
             }
@@ -85,8 +87,6 @@
                 if (c.interval !== undefined && c.interval > 1 && seconds > 0) {
                     seconds = Math.ceil(seconds / c.interval) - 1;
                 }
-
-                var height = c.height || 80;
 
                 common.css(timelineTooltip, {
                     width: (height / ratio) + 'px',
