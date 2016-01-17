@@ -43,14 +43,15 @@
                 'text-shadow': ''
             });
 
-            var c = video.thumbnails || api.conf.thumbnails;
+            var c = flowplayer.extend({}, api.conf.thumbnails, video.thumbnails);
 
-            if (!c) {
+            if (!c.template) {
                 return;
             }
 
             var height = c.height || 80,
                 interval = c.interval || 1,
+                template = c.template,
                 ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
                     max = Math.floor(max / interval);
@@ -72,7 +73,7 @@
                 };
 
             if (c.preload !== false) {
-                preloadImages(c.template, video.duration);
+                preloadImages(template, video.duration);
             }
 
             bean.on(root, 'mousemove.thumbnails', '.fp-timeline', function (ev) {
@@ -94,7 +95,7 @@
                     width: (height / ratio) + 'px',
                     height: height + 'px',
                     // {time} template expected to start at 1, video time/first frame starts at 0
-                    'background-image': "url('" + c.template.replace('{time}', seconds + 1) + "')",
+                    'background-image': "url('" + template.replace('{time}', seconds + 1) + "')",
                     'background-repeat': 'no-repeat',
                     'background-size': 'cover',
                     'background-position': 'center',

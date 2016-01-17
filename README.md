@@ -63,7 +63,12 @@ flowplayer('#player', {
 
 ## Options
 
-Options can be set either on `clip` or on the top level of flowplayer configuration with the key `thumbnails`.
+Options can be set on the [clip](https://flowplayer.org/docs/setup.html#clip-options),
+[player](https://flowplayer.org/docs/setup.html#player-options) and
+[global](https://flowplayer.org/docs/setup.html#global-configuration) level of the flowplayer
+configuration with the key `thumbnails`. This allows common properties to be set on a higher
+level, e.g., for a playlist `height` can configured once in the player configuration, leaving only
+`template` to be set for each clip.
 
 There's an example in the `example/` directory.
 
