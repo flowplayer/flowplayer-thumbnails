@@ -50,6 +50,7 @@
             }
 
             var height = c.height || 80,
+                interval = c.interval || 1,
                 ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
                     if (start === undefined) {
@@ -83,9 +84,9 @@
                 if (seconds < 0 || seconds > Math.round(api.video.duration)) {
                     return;
                 }
-                /* enables greater interval than one second between thumbnails */
-                if (c.interval !== undefined && c.interval > 1 && seconds > 0) {
-                    seconds = Math.ceil(seconds / c.interval) - 1;
+                // enables greater interval than one second between thumbnails
+                if (interval > 1 && seconds > 0) {
+                    seconds = Math.ceil(seconds / interval) - 1;
                 }
 
                 common.css(timelineTooltip, {
