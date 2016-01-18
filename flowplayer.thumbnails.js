@@ -87,9 +87,7 @@
                     return;
                 }
                 // enables greater interval than one second between thumbnails
-                if (interval > 1 && seconds > 0) {
-                    seconds = Math.ceil(seconds / interval) - 1;
-                }
+                seconds = Math.floor(seconds / interval);
 
                 common.css(timelineTooltip, {
                     width: (height / ratio) + 'px',
