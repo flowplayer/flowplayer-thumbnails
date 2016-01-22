@@ -15,7 +15,6 @@
    revision: $GIT_ID$
 
 */
-
 (function (flowplayer) {
     "use strict";
     flowplayer(function (api, root) {
