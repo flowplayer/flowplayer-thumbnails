@@ -4,43 +4,14 @@ This plugin displays preview thumbnail images on the timeline.
 
 ## Usage
 
-Live demo at http://demos.flowplayer.org/api/thumbnails.html
+See: https://flowplayer.org/docs/plugins.html#thumbnails
 
-### Create thumbnails from video
+- [loading the assets](https://flowplayer.org/docs/plugins.html#thumbnails-assets)
+- [generating thumbnails](https://flowplayer.org/docs/plugins.html#generating-thumbnails)
+- [configuration](https://flowplayer.org/docs/plugins.html#thumbnails-configuration)
 
-Simple [ffmpeg](http://www.ffmpeg.org/) command example:
 
-```
-$ ffmpeg -i bauhaus.mp4 -filter:v framerate=1/1,scale=-1:160 bauhaus%d.jpg
-```
-
-The divisor of the `framerate` filter value should be the one which is used for the `interval`
-[option](#options).
-
-To cater for devices with retina display scale height should be 2 times the value of the desired
-`height` [option](#options).
-
-Especially for longer videos it is recommended to save as much on image file size as possible to
-save on loading time.
-
-Example command to batch create and optimize thumbnail images:
-
-```
-$ ffmpeg -i bauhaus.mp4 -filter:v framerate=1/1,scale=-1:160 -q:v 5 %d-X.jpg
-$ for j in *-X.jpg; do jpegtran -copy none -optimize -outfile ${j%-X.jpg}.jpg $j; done
-$ rm *-X.jpg
-```
-
-### Configuration
-
-#### include assets
-
-```html
-<script src="//releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
-<script src="//releases.flowplayer.org/thumbnails/flowplayer.thumbnails.min.js"></script>
-```
-
-#### initialize player
+### Initialize player
 
 ```js
 flowplayer('#player', {
@@ -61,23 +32,9 @@ flowplayer('#player', {
 });
 ```
 
-## Options
+## Demo
 
-Options can be set on the [clip](https://flowplayer.org/docs/setup.html#clip-options),
-[player](https://flowplayer.org/docs/setup.html#player-options) and
-[global](https://flowplayer.org/docs/setup.html#global-configuration) level of the flowplayer
-configuration with the key `thumbnails`. This allows common properties to be set on a higher
-level, e.g., for a playlist `height` can configured once in the player configuration, leaving only
-`template` to be set for each clip.
-
-There's an example in the `example/` directory.
-
-option     | required | default value | description
-:----------| ---------| :------------ | :----------
-`template` | yes      |               | The path from where to load the thumbnail images. Either a relative or absolute path. Use `{time}` as a placeholder for seconds.
-`preload`  | no       |`true`         | If `true`, then all images will be cached at player initialization to make them appear quicker.
-`height`   | no       | 80            | The thumbnail height.
-`interval` | no       | 1             | Seconds between thumbnails. Set this if you want to have more than one second between images.
+http://demos.flowplayer.org/api/thumbnails.html
 
 ## CommonJS
 
