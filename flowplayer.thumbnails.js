@@ -12,7 +12,7 @@
 
    requires:
    - Flowplayer HTML5 version 6.x or greater
-   revision: 49f9cc5
+   revision: $GIT_ID$
 
 */
 (function (flowplayer) {
