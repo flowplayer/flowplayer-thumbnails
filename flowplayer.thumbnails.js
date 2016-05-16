@@ -12,7 +12,7 @@
 
    requires:
    - Flowplayer HTML5 version 6.x or greater
-   revision: $GIT_ID$
+   revision: 49f9cc5
 
 */
 (function (flowplayer) {
@@ -51,6 +51,7 @@
             var height = c.height || 80,
                 interval = c.interval || 1,
                 template = c.template,
+                time_format = c.time_format || function(t) { return t },
                 ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
                     max = Math.floor(max / interval);
@@ -62,7 +63,7 @@
                             return;
                         }
                         var img = new Image();
-                        img.src = tmpl.replace('{time}', start);
+                        img.src = tmpl.replace('{time}', time_format(start));
                         img.onload = function () {
                             start += 1;
                             load();
@@ -92,7 +93,7 @@
                     width: (height / ratio) + 'px',
                     height: height + 'px',
                     // {time} template expected to start at 1, video time/first frame starts at 0
-                    'background-image': "url('" + template.replace('{time}', seconds + 1) + "')",
+                    'background-image': "url('" + template.replace('{time}', time_format(seconds + 1)) + "')",
                     'background-repeat': 'no-repeat',
                     'background-size': 'cover',
                     'background-position': 'center',
