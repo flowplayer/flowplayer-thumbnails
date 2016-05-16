@@ -19,7 +19,7 @@ flowplayer('#player', {
   clip: {
     title: 'Bauhaus',
     thumbnails: {
-      template: 'thumbnails/bauhaus{time}.jpg'
+      template: 'thumbnails/bauhaus{time}.jpg',
       time_format: function(t) {
         return t + "-thumb.jpg";
       }
