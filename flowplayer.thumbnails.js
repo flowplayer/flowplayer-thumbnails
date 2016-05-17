@@ -51,7 +51,9 @@
             var height = c.height || 80,
                 interval = c.interval || 1,
                 template = c.template,
-                time_format = c.time_format || function(t) { return t },
+                time_format = c.time_format || function (t) {
+                    return t;
+                },
                 ratio = video.height / video.width,
                 preloadImages = function (tmpl, max, start) {
                     max = Math.floor(max / interval);
