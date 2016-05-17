@@ -19,7 +19,13 @@ flowplayer('#player', {
   clip: {
     title: 'Bauhaus',
     thumbnails: {
-      template: 'thumbnails/bauhaus{time}.jpg'
+      template: 'thumbnails/bauhaus{time}.jpg',
+      time_format: function(t) {
+        // An example using left padding.
+        var padding = "0000";
+        var formatted_time = padding.substring(0, padding.length - t.toString().length) + t;
+        return formatted_time + "-thumb.jpg";
+      }
     },
     sources: [{
       type: 'video/webm',
