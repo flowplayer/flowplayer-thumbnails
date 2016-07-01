@@ -54,21 +54,21 @@
                 time_format = c.time_format || function (t) {
                     return t;
                 },
+                startIndex = typeof c.startIndex === 'number'
+                    ? c.startIndex
+                    : 1,
                 thumb = c.lazyload !== false
                     ? new Image()
                     : null,
                 ratio = video.height / video.width,
-                preloadImages = function (tmpl, max, start) {
-                    max = Math.floor(max / interval);
-                    if (start === undefined) {
-                        start = 1;
-                    }
+                preloadImages = function (max, start) {
+                    max = Math.floor(max / interval + start);
                     function load() {
                         if (start > max) {
                             return;
                         }
                         var img = new Image();
-                        img.src = tmpl.replace('{time}', time_format(start));
+                        img.src = template.replace('{time}', time_format(start));
                         img.onload = function () {
                             start += 1;
                             load();
@@ -78,7 +78,7 @@
                 };
 
             if (c.preload) {
-                preloadImages(template, video.duration);
+                preloadImages(video.duration, startIndex);
             }
 
             bean.on(root, 'mousemove.thumbnails', '.fp-timeline', function (ev) {
@@ -108,7 +108,7 @@
                 seconds = Math.floor(seconds / interval);
 
                 // {time} template expected to start at 1, video time/first frame starts at 0
-                url = template.replace('{time}', time_format(seconds + 1));
+                url = template.replace('{time}', time_format(seconds + startIndex));
 
                 if (c.lazyload !== false) {
                     thumb.src = url;
