@@ -77,7 +77,7 @@
                     load();
                 };
 
-            if (c.preload !== false) {
+            if (c.preload) {
                 preloadImages(template, video.duration);
             }
 
