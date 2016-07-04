@@ -15,8 +15,9 @@
    revision: $GIT_ID$
 
 */
-(function (flowplayer) {
+var extension = function (flowplayer) {
     "use strict";
+
     flowplayer(function (api, root) {
         var common = flowplayer.common,
             bean = flowplayer.bean,
@@ -120,7 +121,10 @@
         });
 
     });
+};
 
-}((typeof module === "object" && module.exports)
-    ? require('flowplayer')
-    : window.flowplayer));
+if (typeof module === 'object' && module.exports) {
+    module.exports = extension;
+} else if (window.flowplayer) {
+    extension(window.flowplayer);
+}

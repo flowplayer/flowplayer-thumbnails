@@ -49,8 +49,10 @@ The plugin can be used in a [browserify](http://browserify.org) and/or
 [commonjs](http://requirejs.org/docs/commonjs.html) loader:
 
 ```js
-var flowplayer = require('flowplayer');
-require('flowplayer-thumbnails'); // Plugin injects itself into flowplayer
+var flowplayer = require('flowplayer'),
+    plugin = require('flowplayer-thumbnails);
+
+plugin(flowplayer); // plugin injects itself into Flowplayer
 ```
 
 ## Building the plugin
