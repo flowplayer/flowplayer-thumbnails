@@ -50,7 +50,7 @@ The plugin can be used in a [browserify](http://browserify.org) and/or
 
 ```js
 var flowplayer = require('flowplayer'),
-    plugin = require('flowplayer-thumbnails);
+    plugin = require('flowplayer-thumbnails');
 
 plugin(flowplayer); // plugin injects itself into Flowplayer
 ```
