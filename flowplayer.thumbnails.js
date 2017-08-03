@@ -32,7 +32,7 @@
                 return;
             }
 
-            api.on('ready', function (ev, a, video) {
+            api.on('ready', function (_ev, a, video) {
                 // cleanup
                 bean.off(root, '.thumbnails');
                 common.css(timelineTooltip, {
@@ -46,7 +46,7 @@
                     'text-shadow': ''
                 });
 
-                var c = flowplayer.extend({}, api.conf.thumbnails, video.thumbnails);
+                var c = flowplayer.extend({}, a.conf.thumbnails, video.thumbnails);
 
                 if (!c.template) {
                     return;
