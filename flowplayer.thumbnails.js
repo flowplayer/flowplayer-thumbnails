@@ -26,7 +26,7 @@
                 timeline = common.find('.fp-timeline', root)[0],
                 timelineTooltip = common.find('.fp-time' + (flowplayer.version.indexOf('6.') === 0
                     ? 'line-tooltip'
-                    : 'stamp'), root)[0];
+                    : 'stamp'), timeline)[0];
 
             if (support.touch || !support.inlineVideo) {
                 return;
