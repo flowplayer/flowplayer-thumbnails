@@ -64,7 +64,8 @@
                     thumb = c.lazyload !== false
                         ? new Image()
                         : null,
-                    ratio = video.height / video.width,
+                    engine = common.find('.fp-engine', root)[0],
+                    ratio = (video.height || common.height(engine)) / (video.width || common.width(engine)),
                     preloadImages = function (max, start) {
                         max = Math.floor(max / interval + start);
                         function load() {
