@@ -9,9 +9,10 @@
     <div id="content">
       <h1>Flowplayer thumbnails</h1>
       <div id="player"></div>
+      <div id="player-with-sprite"></div>
     </div>
     <script src="//releases.flowplayer.org/6.0.4/flowplayer.min.js"></script>
-    <script src="../flowplayer-thumbnails.js"></script>
+    <script src="../flowplayer.thumbnails.js"></script>
     <script>
     flowplayer('#player', {
       ratio: 0.4167,
@@ -19,6 +20,28 @@
         title: 'Bauhaus',
         thumbnails: {
           template: 'thumbnails/bauhaus{time}.jpg'
+        },
+        sources: [{
+          type: 'video/webm',
+          src: '//stream.flowplayer.org/bauhaus.webm'
+        }, {
+          type: 'video/mp4',
+          src: '//stream.flowplayer.org/bauhaus.mp4'
+        }]
+      }
+    });
+
+    flowplayer('#player-with-sprite', {
+      ratio: 0.4167,
+      clip: {
+        title: 'Bauhaus',
+        thumbnails: {
+          sprite: {
+            thumbnailWidth: 180,
+            thumbnailHeight: 75,
+            thumbnailsPerRow: 5
+          },
+          template: 'thumbnails/thumbnail-sheet.jpg'
         },
         sources: [{
           type: 'video/webm',

@@ -93,16 +93,26 @@
                         seconds = Math.round(percentage * api.video.duration),
                         url,
                         displayThumb = function () {
-                            common.css(timelineTooltip, {
+                            let css = {
                                 width: (height / ratio) + 'px',
                                 height: height + 'px',
                                 'background-image': "url('" + url + "')",
-                                'background-repeat': 'no-repeat',
-                                'background-size': 'cover',
-                                'background-position': 'center',
                                 'border': '1px solid #333',
                                 'text-shadow': '1px 1px #000'
-                            });
+                            }
+                            if (c.sprite) {
+                                let left = (seconds % c.sprite.thumbnailsPerRow) * -c.sprite.thumbnailWidth,
+                                    top = Math.floor(seconds / c.sprite.thumbnailsPerRow) * -c.sprite.thumbnailHeight,
+                                    mod_height = height - 10;
+                                css['background-position'] = left + 'px ' + top + 'px';
+                                css['height'] = mod_height + 'px';
+                                css['width'] = (mod_height / ratio) + 'px';
+                            } else {
+                                css['background-repeat'] = 'no-repeat';
+                                css['background-size'] = 'cover';
+                                css['background-position'] = 'center';
+                            }
+                            common.css(timelineTooltip, css);
                         };
 
                     // 2nd condition safeguards at out of range retrieval attempts
