@@ -22,6 +22,7 @@
         flowplayer(function (api, root) {
             var common = flowplayer.common,
                 bean = flowplayer.bean,
+                extend = flowplayer.extend,
                 support = flowplayer.support,
                 timeline = common.find('.fp-timeline', root)[0],
                 timelineTooltip = common.find('.fp-time' + (flowplayer.version.indexOf('6.') === 0
@@ -46,15 +47,18 @@
                     'text-shadow': ''
                 });
 
-                var c = flowplayer.extend({}, a.conf.thumbnails, video.thumbnails);
+                var c = extend({}, a.conf.thumbnails, video.thumbnails),
+                    template = c.template,
+                    sprite = template.indexOf('{time}') < 0;
 
-                if (!c.template) {
+                if (!template || (sprite && (!c.rows || !c.columns || !c.width || !c.height))) {
                     return;
                 }
 
-                var height = c.height || 80,
+                var height = sprite
+                        ? c.height / c.rows
+                        : c.height || 80,
                     interval = c.interval || 1,
-                    template = c.template,
                     time_format = c.time_format || function (t) {
                         return t;
                     },
@@ -93,24 +97,28 @@
                         seconds = Math.round(percentage * api.video.duration),
                         url,
                         displayThumb = function () {
-                            let css = {
-                                width: (height / ratio) + 'px',
-                                height: height + 'px',
+                            var css = {
                                 'background-image': "url('" + url + "')",
-                                'border': '1px solid #333',
+                                'background-repeat': 'no-repeat',
+                                border: '1px solid #333',
                                 'text-shadow': '1px 1px #000'
-                            }
-                            if (c.sprite) {
-                                let left = (seconds % c.sprite.thumbnailsPerRow) * -c.sprite.thumbnailWidth,
-                                    top = Math.floor(seconds / c.sprite.thumbnailsPerRow) * -c.sprite.thumbnailHeight,
-                                    mod_height = height - 10;
-                                css['background-position'] = left + 'px ' + top + 'px';
-                                css['height'] = mod_height + 'px';
-                                css['width'] = (mod_height / ratio) + 'px';
+                            };
+                            if (sprite) {
+                                var mod_width = c.width / c.columns,
+                                    left = Math.floor(seconds % c.columns) * -mod_width,
+                                    top = Math.floor(seconds / c.columns) * -height;
+                                extend(css, {
+                                    'background-position': left + 'px ' + top + 'px',
+                                    height: height + 'px',
+                                    width: mod_width + 'px'
+                                });
                             } else {
-                                css['background-repeat'] = 'no-repeat';
-                                css['background-size'] = 'cover';
-                                css['background-position'] = 'center';
+                                extend(css, {
+                                    width: (height / ratio) + 'px',
+                                    height: height + 'px',
+                                    'background-size': 'cover',
+                                    'background-position': 'center'
+                                });
                             }
                             common.css(timelineTooltip, css);
                         };
