@@ -58,6 +58,11 @@
                 var height = sprite
                         ? c.height / c.rows
                         : c.height || 80,
+                    engine = common.find('.fp-engine', root)[0],
+                    ratio = (video.height || common.height(engine)) / (video.width || common.width(engine)),
+                    width = sprite
+                        ? c.width / c.columns
+                        : height / ratio,
                     interval = c.interval || 1,
                     time_format = c.time_format || function (t) {
                         return t;
@@ -68,8 +73,6 @@
                     thumb = c.lazyload !== false
                         ? new Image()
                         : null,
-                    engine = common.find('.fp-engine', root)[0],
-                    ratio = (video.height || common.height(engine)) / (video.width || common.width(engine)),
                     preloadImages = function (max, start) {
                         max = Math.floor(max / interval + start);
                         function load() {
@@ -98,24 +101,19 @@
                         url,
                         displayThumb = function () {
                             var css = {
+                                width: width + 'px',
+                                height: height + 'px',
                                 'background-image': "url('" + url + "')",
                                 'background-repeat': 'no-repeat',
                                 border: '1px solid #333',
                                 'text-shadow': '1px 1px #000'
                             };
                             if (sprite) {
-                                var mod_width = c.width / c.columns,
-                                    left = Math.floor(seconds % c.columns) * -mod_width,
+                                var left = Math.floor(seconds % c.columns) * -width,
                                     top = Math.floor(seconds / c.columns) * -height;
-                                extend(css, {
-                                    'background-position': left + 'px ' + top + 'px',
-                                    height: height + 'px',
-                                    width: mod_width + 'px'
-                                });
+                                css['background-position'] = left + 'px ' + top + 'px';
                             } else {
                                 extend(css, {
-                                    width: (height / ratio) + 'px',
-                                    height: height + 'px',
                                     'background-size': 'cover',
                                     'background-position': 'center'
                                 });
