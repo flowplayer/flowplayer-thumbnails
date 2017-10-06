@@ -47,7 +47,10 @@
                     'text-shadow': ''
                 });
 
-                var c = extend({}, a.conf.thumbnails, video.thumbnails),
+                var c = extend({
+                        lazyload: true,
+                        responsive: true
+                    }, a.conf.thumbnails, video.thumbnails),
                     template = c.template,
                     sprite = template.indexOf('{time}') < 0;
 
@@ -70,7 +73,7 @@
                     startIndex = typeof c.startIndex === 'number'
                         ? c.startIndex
                         : 1,
-                    thumb = c.lazyload !== false
+                    thumb = c.lazyload
                         ? new Image()
                         : null,
                     preloadImages = function (max, start) {
@@ -100,17 +103,22 @@
                         seconds = Math.round(percentage * api.video.duration),
                         url,
                         displayThumb = function () {
-                            var css = {
-                                width: width + 'px',
-                                height: height + 'px',
-                                'background-image': "url('" + url + "')",
-                                'background-repeat': 'no-repeat',
-                                border: '1px solid #333',
-                                'text-shadow': '1px 1px #000'
-                            };
+                            var scale = (c.responsive && common.hasClass(root, 'is-small'))
+                                    ? 0.7
+                                    : (c.responsive && common.hasClass(root, 'is-tiny'))
+                                        ? 0.6
+                                        : 1,
+                                css = {
+                                    width: (width * scale) + 'px',
+                                    height: (height * scale) + 'px',
+                                    'background-image': "url('" + url + "')",
+                                    'background-repeat': 'no-repeat',
+                                    border: '1px solid #333',
+                                    'text-shadow': '1px 1px #000'
+                                };
                             if (sprite) {
-                                var left = Math.floor(seconds % c.columns) * -width,
-                                    top = Math.floor(seconds / c.columns) * -height;
+                                var left = Math.floor(seconds % c.columns) * -width - (width - width * scale) / 2,
+                                    top = Math.floor(seconds / c.columns) * -height - (height - height * scale) / 2;
                                 css['background-position'] = left + 'px ' + top + 'px';
                             } else {
                                 extend(css, {
