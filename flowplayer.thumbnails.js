@@ -52,7 +52,7 @@
                         responsive: true
                     }, a.conf.thumbnails, video.thumbnails),
                     template = c.template,
-                    sprite = template.indexOf('{time}') < 0;
+                    sprite = template && template.indexOf('{time}') < 0;
 
                 if (!template || (sprite && (!c.rows || !c.columns || !c.width || !c.height))) {
                     return;
