@@ -73,7 +73,7 @@
                     startIndex = typeof c.startIndex === 'number'
                         ? c.startIndex
                         : 1,
-                    thumb = c.lazyload
+                    thumb = c.lazyload && !sprite
                         ? new Image()
                         : null,
                     preloadImages = function (max, start) {
@@ -139,7 +139,7 @@
                     // {time} template expected to start at 1, video time/first frame starts at 0
                     url = template.replace('{time}', time_format(seconds + startIndex));
 
-                    if (c.lazyload !== false) {
+                    if (c.lazyload && !sprite) {
                         thumb.src = url;
                         bean.on(thumb, 'load', displayThumb);
                     } else {
